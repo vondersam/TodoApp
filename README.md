@@ -1,3 +1,5 @@
+Practice todo app based on the "Working with Components in React 18" course at Pluralsight, by Peter Kellner
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
