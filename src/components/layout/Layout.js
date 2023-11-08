@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { ThemeProvider, ThemeContext } from '../../contexts/ThemeContext';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children }) => {
+const Inner = ({ children }) => {
   const layoutVersion = 'Layout version 2.0';
   const { darkTheme } = useContext(ThemeContext);
   return (
@@ -13,6 +13,14 @@ const Layout = ({ children }) => {
       <br />
       <Footer />
     </div>
+  );
+};
+
+const Layout = (props) => {
+  return (
+    <ThemeProvider>
+      <Inner {...props} />
+    </ThemeProvider>
   );
 };
 
