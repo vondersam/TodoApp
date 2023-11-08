@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../../App';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const Header = ({ layoutVersion }) => {
   const { darkTheme, toggleTheme } = useContext(ThemeContext);
