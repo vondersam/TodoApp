@@ -1,16 +1,16 @@
-const ToDo = ({
+import ErrorBoundary from '../common/ErrorBoundary';
+
+const Inner = ({
   todoItem,
   handleToggleCompleted,
   handleDelete,
   handleEdit,
-  idUpdating,
+  idUpdating
 }) => {
   return (
     <div
       key={todoItem.id}
-      className={
-        todoItem.completed ? "single-task completed" : "single-task"
-      }
+      className={todoItem.completed ? 'single-task completed' : 'single-task'}
     >
       <div
         onClick={() => {
@@ -22,15 +22,11 @@ const ToDo = ({
             <i className="fa fa-exclamation-circle"></i>
           </span>
         ) : null}
-        {todoItem.todoText}
+        {todoItem.todoText.slice(0, 60)}
       </div>
 
       {idUpdating === todoItem.id ? (
-        <button
-          className="btn btn-primary busy-spinner"
-          type="button"
-          disabled
-        >
+        <button className="btn btn-primary busy-spinner" type="button" disabled>
           <span
             className="spinner-border spinner-border-sm"
             role="status"
@@ -53,7 +49,7 @@ const ToDo = ({
           className="btn delete"
           title="Delete"
           onClick={() => {
-            const response = window.confirm("Delete?");
+            const response = window.confirm('Delete?');
             if (response) {
               handleDelete(todoItem.id);
             }
@@ -63,6 +59,28 @@ const ToDo = ({
         </button>
       </div>
     </div>
+  );
+};
+
+const debug = false;
+
+const ToDoErrorBoundary = (props) => {
+  return (
+    <div className="single-task text-bg-danger">
+      {debug ? (
+        <b>Error processing {JSON.stringify(props)}</b>
+      ) : (
+        <b>Problem displaying item</b>
+      )}
+    </div>
+  );
+};
+
+const ToDo = (props) => {
+  return (
+    <ErrorBoundary errorUI={<ToDoErrorBoundary {...props} />}>
+      <Inner {...props} />
+    </ErrorBoundary>
   );
 };
 
