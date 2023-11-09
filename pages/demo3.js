@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useDebugValue } from 'react';
 
 function useCountTracker() {
   const [count2, setCount2] = useState(201);
   const [count1, setCount1] = useState(101);
+
+  useDebugValue(`count1 ${count1}`);
+  useDebugValue(`count2 ${count2}`);
+
   return {
     count1,
     count2,
